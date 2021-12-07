@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Person extends Entity {
+export class VisitLog extends Entity {
   @property({
     type: 'string',
     id: true,
@@ -10,55 +10,55 @@ export class Person extends Entity {
   id?: string;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  idDocument: string;
+  temperature: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  weight: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  heartRate: number;
 
   @property({
     type: 'string',
     required: true,
   })
-  nombres: string;
+  mood: string;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  visitDate: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  surnames: string;
+  medicalFormulations: string;
 
   @property({
     type: 'string',
-    required: true,
   })
-  address: string;
+  idRequest?: string;
+  /*   @hasOne(() => Request, {keyTo: 'idVisitLog'})
+    request: Request; */
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  phone: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  email: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  keyPassw: string;
-
-
-  constructor(data?: Partial<Person>) {
+  constructor(data?: Partial<VisitLog>) {
     super(data);
   }
 }
 
-export interface PersonRelations {
+export interface VisitLogRelations {
   // describe navigational properties here
 }
 
-export type PersonWithRelations = Person & PersonRelations;
+export type VisitLogWithRelations = VisitLog & VisitLogRelations;
